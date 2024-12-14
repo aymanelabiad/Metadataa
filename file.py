@@ -15,8 +15,9 @@ uploaded_files = st.file_uploader(
     accept_multiple_files=True
 )
 
-# Get the path to exiftool in the same directory as the script
-exiftool_path = os.path.join(os.path.dirname(__file__), "exiftool")
+# Determine the path to exiftool.exe based on where the script is running
+# Assuming exiftool.exe is in the 'exiftool_files' folder in your repo
+exiftool_path = os.path.join(os.path.dirname(__file__), "exiftool_files", "exiftool.exe")
 
 if uploaded_files:
     # Create a temporary directory
