@@ -15,6 +15,9 @@ uploaded_files = st.file_uploader(
     accept_multiple_files=True
 )
 
+# Get the path to exiftool in the same directory as the script
+exiftool_path = os.path.join(os.path.dirname(__file__), "exiftool")
+
 if uploaded_files:
     # Create a temporary directory
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -34,7 +37,7 @@ if uploaded_files:
             # Remove metadata using ExifTool via subprocess
             try:
                 subprocess.run(
-                    ["exiftool", "-all=", "-o", output_file_path, input_file_path],
+                    [exiftool_path, "-all=", "-o", output_file_path, input_file_path],
                     check=True
                 )
                 cleaned_files.append(output_file_path)
